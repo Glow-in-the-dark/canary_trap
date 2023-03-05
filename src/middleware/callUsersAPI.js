@@ -26,11 +26,12 @@ const callUserAPI = (store) => (next) => async (customActionJsonObject) => {
     }, // you need to configure your authorization header
     data: data,
   });
-  console.log("call user apiu 6: whats my response ? ");
-  console.log(callResponse);
+  console.log("call user api 6: whats my response ? @ Middleware");
+  console.log(callResponse); // This callResponse is the Response i get after submit the API
+  console.log("entering next middleware OR entering store STATE");
   next({
     type: customActionJsonObject.type,
-    data: callResponse, // this is action.data in reducer
+    data: callResponse && callResponse.data, // this is action.data in reducer
   });
 };
 

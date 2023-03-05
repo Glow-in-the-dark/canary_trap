@@ -17,7 +17,8 @@ import {
 } from "@heroicons/react/24/solid";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
-export function Navbar({ brandName, action }) {
+// export function Navbar({ brandName, action }) {
+export function Navbar(props) {
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
@@ -64,11 +65,12 @@ export function Navbar({ brandName, action }) {
       <div className="container mx-auto flex items-center justify-between text-white">
         <Link to="/">
           <Typography className="mr-4 ml-2 cursor-pointer py-1.5 font-bold">
-            {brandName}
+            {/* {brandName} */}
+            Canary Trap
           </Typography>
         </Link>
         <div className="hidden lg:block">{navList}</div>
-        <div className="hidden gap-2 lg:flex">
+        {/* <div className="hidden gap-2 lg:flex">
           <a
             href="https://www.material-tailwind.com/blocks?ref=mtkr"
             target="_blank"
@@ -80,7 +82,7 @@ export function Navbar({ brandName, action }) {
           {React.cloneElement(action, {
             className: "hidden lg:inline-block",
           })}
-        </div>
+        </div> */}
         <IconButton
           variant="text"
           size="sm"
@@ -99,7 +101,7 @@ export function Navbar({ brandName, action }) {
         className="rounded-xl bg-white px-4 pt-2 pb-4 text-blue-gray-900"
         open={openNav}
       >
-        <div className="container mx-auto">
+        {/* <div className="container mx-auto">
           {navList}
           <a
             href="https://www.material-tailwind.com/blocks/react?ref=mtkr"
@@ -113,31 +115,31 @@ export function Navbar({ brandName, action }) {
           {React.cloneElement(action, {
             className: "w-full block",
           })}
-        </div>
+        </div> */}
       </MobileNav>
     </MTNavbar>
   );
 }
 
-Navbar.defaultProps = {
-  brandName: "Canary Trap",
-  action: (
-    <a
-      href="https://www.creative-tim.com/product/material-tailwind-kit-react"
-      target="_blank"
-    >
-      <Button variant="gradient" size="sm" fullWidth>
-        free download
-      </Button>
-    </a>
-  ),
-};
+// Navbar.defaultProps = {
+//   brandName: "Canary Trap",
+//   action: (
+//     <a
+//       href="https://www.creative-tim.com/product/material-tailwind-kit-react"
+//       target="_blank"
+//     >
+//       <Button variant="gradient" size="sm" fullWidth>
+//         free download
+//       </Button>
+//     </a>
+//   ),
+// };
 
-Navbar.propTypes = {
-  brandName: PropTypes.string,
-  action: PropTypes.node,
-};
+// Navbar.propTypes = {
+//   brandName: PropTypes.string,
+//   action: PropTypes.node,
+// };
 
-Navbar.displayName = "/src/widgets/layout/navbar.jsx";
+// Navbar.displayName = "/src/widgets/layout/navbar.jsx";
 
 export default Navbar;

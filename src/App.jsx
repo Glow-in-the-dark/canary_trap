@@ -20,10 +20,6 @@ import SignUp from "./page_wrappers/sign-up";
 
 function App() {
   const port_no = 5002;
-  // const [username, setUsername] = useState("")
-  // const [email, setEmail] = useState("")
-  // const [password, setPassword] = useState("")
-  const [signUp, setSignUp] = useState({});
 
   return (
     // <div>
@@ -48,11 +44,7 @@ function App() {
           element={<SignIn />}
           icon={ArrowRightOnRectangleIcon}
         />
-        <Route
-          path="/sign-up"
-          element={<SignUp signUp={signUp} setSignUp={setSignUp} />}
-          icon={UserPlusIcon}
-        />
+        <Route path="/sign-up" element={<SignUp />} icon={UserPlusIcon} />
         <Route path="*" element={<Navigate to="/home" replace />} />
       </Routes>
     </>

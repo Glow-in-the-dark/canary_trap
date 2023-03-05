@@ -38,12 +38,12 @@ export function SignUp(props) {
             <Typography variant="h3" color="white">
               Sign Up
             </Typography>
-            [`${JSON.stringify(currentUser2)}`]
+            {/* `${JSON.stringify(currentUser2)}` */}
           </CardHeader>
           <CardBody className="flex flex-col gap-4">
             <Input
               variant="standard"
-              label="username"
+              label="Username"
               size="lg"
               onChange={(e) => {
                 setUsernameInput(e.target.value);
