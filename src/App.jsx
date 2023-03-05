@@ -1,120 +1,61 @@
 import React, { useState } from "react";
-import axios from "axios";
+import ExposeLeak from "./components/ExposeLeak";
+import CreateTraps from "./components/CreateTraps";
+//----
+import { Routes, Route, Navigate } from "react-router-dom";
+import { Navbar } from "./components/layout";
+//----
+import {
+  HomeIcon,
+  UserCircleIcon,
+  ArrowRightOnRectangleIcon,
+  UserPlusIcon,
+  DocumentTextIcon,
+} from "@heroicons/react/24/solid";
+import Home from "./pages/home";
+import Profile from "./pages/profile";
+import Test from "./pages/Test";
+import SignIn from "./page_wrappers/sign-in";
+import SignUp from "./page_wrappers/sign-up";
 
 function App() {
-  const port_no = 5001;
-
-  const [file, setFile] = useState(null);
-  const [upload, setUpload] = useState({
-    title: "",
-    qty: "",
-    names: "",
-  });
-
-  const handleChange = (e) => {
-    setUpload({
-      ...upload,
-      [e.target.name]: e.target.value,
-    });
-    console.log(upload);
-  };
-
-  const uploadImage = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(); // create an empty form data object
-
-    // populate the form data object with input data
-    formData.append("title", upload.title);
-    formData.append("qty", upload.qty);
-    formData.append("names", upload.names);
-    formData.append("img", file);
-
-    // pass the form data object to the server endpoint
-    try {
-      const response = await axios.post(
-        `http://localhost:${port_no}/uploadImg/test`,
-        // "http://httpbin.org/anything",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            // Authorization: `Bearer ${ctx.ACCESS_TOKEN}`,
-          },
-        }
-      );
-      console.log("hello");
-      console.log(response);
-      console.log("world");
-    } catch (err) {
-      console.error(err);
-    }
-
-    // unable to console log the form data directly. need to deconstruct to view as per below
-    for (const pair of formData.entries()) {
-      console.log(pair[0] + ": " + pair[1]);
-    }
-
-    setUpload({
-      title: "",
-      qty: "",
-      names: "",
-      img: "",
-    });
-  };
+  const port_no = 5002;
+  // const [username, setUsername] = useState("")
+  // const [email, setEmail] = useState("")
+  // const [password, setPassword] = useState("")
+  const [signUp, setSignUp] = useState({});
 
   return (
-    <div>
-      <h2>Canary Trap</h2>
-      <form className="" onSubmit={(e) => uploadImage(e)}>
-        <label for="title">Title</label>
-        <input
-          className="border-2 border-lightgray-200 mb-2 rounded-lg p-1"
-          placeholder="Document's Title"
-          name="title"
-          type="text"
-          value={upload.title}
-          onChange={(e) => {
-            handleChange(e);
-          }}
+    // <div>
+    //   <CreateTraps port={port_no} />
+    //   <ExposeLeak port={port_no} />
+    // </div>
+    <>
+      <div className="container absolute left-2/4 z-10 mx-auto -translate-x-2/4 p-4">
+        <Navbar />
+      </div>
+      <Routes>
+        {/* {routes.map(
+          ({ path, element }, key) =>
+            element && <Route key={key} exact path={path} element={element} />
+        )} */}
+        <Route path="/" element={<Navigate replace to="/home" />} />
+        <Route path="/home" element={<Home />} icon={HomeIcon} />
+        <Route path="/profile" element={<Profile />} icon={UserCircleIcon} />
+        <Route path="/test" element={<Test port={port_no} />} />
+        <Route
+          path="/sign-in"
+          element={<SignIn />}
+          icon={ArrowRightOnRectangleIcon}
         />
-        <br />
-        <label for="qty">Quantity</label>
-        <input
-          className="border-2 border-lightgray-200 mx-auto mb-2 rounded-lg p-1"
-          placeholder="Quantity for Distribution"
-          name="qty"
-          type="text"
-          value={upload.qty}
-          onChange={(e) => handleChange(e)}
+        <Route
+          path="/sign-up"
+          element={<SignUp signUp={signUp} setSignUp={setSignUp} />}
+          icon={UserPlusIcon}
         />
-        <br />
-        <div>
-          Key in individual names for distributions. Ensure the number of name
-          matches the number of Quantity above. (names are separated by commas.){" "}
-        </div>
-        <label for="names">Names</label>
-        <input
-          className="border-2 border-lightgray-200 mx-auto mb-2 rounded-lg p-1"
-          placeholder="e.g: John,Peter,Mary "
-          name="names"
-          type="text"
-          value={upload.name}
-          onChange={(e) => handleChange(e)}
-        />
-        <br />
-        <label for="img">Image</label>
-        <input
-          placeholder="img"
-          name="img"
-          type="file"
-          onChange={(e) => setFile(e.target.files[0])}
-        />
-        <br />
-        <button className="mt-3 mx-14 inline-block px-6 py-2.5 bg-primary-600 text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-primary-800 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg transition duration-150 ease-in-out">
-          SUBMIT
-        </button>
-      </form>
-    </div>
+        <Route path="*" element={<Navigate to="/home" replace />} />
+      </Routes>
+    </>
   );
 }
 
