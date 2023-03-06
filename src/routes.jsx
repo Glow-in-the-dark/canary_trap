@@ -28,9 +28,9 @@ export const routes = [
     element: "",
   },
   {
-    name: "test",
-    path: "/Test",
-    element: <Test />,
+    name: "Create_Expose",
+    path: "/Create_Expose",
+    element: <Create_Expose />,
   },
   {
     icon: ArrowRightOnRectangleIcon,

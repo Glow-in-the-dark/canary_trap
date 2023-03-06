@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import {
@@ -19,14 +19,22 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 // export function Navbar({ brandName, action }) {
 export function Navbar(props) {
-  const [openNav, setOpenNav] = React.useState(false);
+  const [openNav, setOpenNav] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const { usernameState, userObj } = props;
+  const isAdmin = userObj && userObj.isAdmin; // if userObj is undefined, it will just define isAdmin as undefined. will not move to call "userObj.isAdmin" which will cause an error.
 
-  React.useEffect(() => {
-    window.addEventListener(
-      "resize",
-      () => window.innerWidth >= 960 && setOpenNav(false)
-    );
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 980) {
+        setIsMobile(false);
+      } else {
+        setIsMobile(true);
+      }
+    });
   }, []);
+
+  console.log("string username:", usernameState);
 
   const navList = (
     <ul className="mb-4 mt-2 flex flex-col gap-2 text-inherit lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -42,21 +50,38 @@ export function Navbar(props) {
         })}
         Profile
       </Link>
-      <Link to="/test" className="flex items-center gap-1 p-1 font-normal">
-        test
+      {usernameState && (
+        <Link
+          to="/Create_Expose"
+          className="flex items-center gap-1 p-1 font-normal"
+        >
+          Create / Expose
+        </Link>
+      )}
+      <Link to="/adminPage" className="flex items-center gap-1 p-1 font-normal">
+        Admin
       </Link>
-      <Link to="/sign-in" className="flex items-center gap-1 p-1 font-normal">
-        {React.createElement(UserCircleIcon, {
-          className: "w-[18px] h-[18px] opacity-75 mr-1",
-        })}
-        Sign In
-      </Link>
-      <Link to="/sign-up" className="flex items-center gap-1 p-1 font-normal">
-        {React.createElement(UserCircleIcon, {
-          className: "w-[18px] h-[18px] opacity-75 mr-1",
-        })}
-        Sign Up
-      </Link>
+      {!usernameState && (
+        <Link to="/sign-in" className="flex items-center gap-1 p-1 font-normal">
+          {React.createElement(UserCircleIcon, {
+            className: "w-[18px] h-[18px] opacity-75 mr-1",
+          })}
+          Sign In
+        </Link>
+      )}
+      {!usernameState && (
+        <Link to="/sign-up" className="flex items-center gap-1 p-1 font-normal">
+          {React.createElement(UserCircleIcon, {
+            className: "w-[18px] h-[18px] opacity-75 mr-1",
+          })}
+          Sign Up
+        </Link>
+      )}
+      {usernameState && (
+        <Typography className="mr-4 ml-2 cursor-pointer py-1.5 font-bold">
+          Hello! :{usernameState}
+        </Typography>
+      )}
     </ul>
   );
 
@@ -97,13 +122,15 @@ export function Navbar(props) {
           )}
         </IconButton>
       </div>
-      <MobileNav
-        className="rounded-xl bg-white px-4 pt-2 pb-4 text-blue-gray-900"
-        open={openNav}
-      >
-        {/* <div className="container mx-auto">
-          {navList}
-          <a
+
+      {isMobile && (
+        <MobileNav
+          className="rounded-xl bg-white px-4 pt-2 pb-4 text-blue-gray-900"
+          open={openNav}
+        >
+          <div className="container mx-auto">
+            {navList}
+            {/* <a
             href="https://www.material-tailwind.com/blocks/react?ref=mtkr"
             target="_blank"
             className="mb-2 block"
@@ -114,9 +141,10 @@ export function Navbar(props) {
           </a>
           {React.cloneElement(action, {
             className: "w-full block",
-          })}
-        </div> */}
-      </MobileNav>
+          })} */}
+          </div>
+        </MobileNav>
+      )}
     </MTNavbar>
   );
 }

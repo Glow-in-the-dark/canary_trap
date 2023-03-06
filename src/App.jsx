@@ -3,7 +3,7 @@ import ExposeLeak from "./components/ExposeLeak";
 import CreateTraps from "./components/CreateTraps";
 //----
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Navbar } from "./components/layout";
+
 //----
 import {
   HomeIcon,
@@ -14,9 +14,12 @@ import {
 } from "@heroicons/react/24/solid";
 import Home from "./pages/home";
 import Profile from "./pages/profile";
-import Test from "./pages/Test";
+import Create_Expose from "./page_wrappers/Create_Expose";
+import Admin from "./pages/adminPage";
 import SignIn from "./page_wrappers/sign-in";
 import SignUp from "./page_wrappers/sign-up";
+// import { Navbar } from "./components/layout";
+import NavBar from "./page_wrappers/navbar";
 
 function App() {
   const port_no = 5002;
@@ -28,7 +31,7 @@ function App() {
     // </div>
     <>
       <div className="container absolute left-2/4 z-10 mx-auto -translate-x-2/4 p-4">
-        <Navbar />
+        <NavBar />
       </div>
       <Routes>
         {/* {routes.map(
@@ -38,7 +41,11 @@ function App() {
         <Route path="/" element={<Navigate replace to="/home" />} />
         <Route path="/home" element={<Home />} icon={HomeIcon} />
         <Route path="/profile" element={<Profile />} icon={UserCircleIcon} />
-        <Route path="/test" element={<Test port={port_no} />} />
+        <Route
+          path="/Create_Expose"
+          element={<Create_Expose port={port_no} />}
+        />
+        <Route path="/adminPage" element={<Admin />} />
         <Route
           path="/sign-in"
           element={<SignIn />}

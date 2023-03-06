@@ -25,6 +25,8 @@ export const userStore = (state = {}, action) => {
       const currentUsernameState = decodedObj.username;
       const userID = decodedObj.id;
       const currentEmailState = decodedObj.email;
+      // const isAdmin = decodedObj.isAdmin;
+      const userObj = action.data.userObj;
 
       //this is where it stores the ifo we get from the API's "response" into the state
       return {
@@ -34,6 +36,8 @@ export const userStore = (state = {}, action) => {
         usernameState: currentUsernameState,
         idState: userID,
         emailState: currentEmailState,
+        userObj: userObj,
+        // isAdmin: isAdmin,
       };
     default:
       return {

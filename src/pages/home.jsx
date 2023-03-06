@@ -28,12 +28,11 @@ export function Home() {
                 color="white"
                 className="mb-6 font-black"
               >
-                Your story starts with us.
+                IDENTIFY <br /> Information Leakages
               </Typography>
               <Typography variant="lead" color="white" className="opacity-80">
-                This is a simple example of a Landing Page you can build using
-                Material Tailwind. It features multiple components based on the
-                Tailwind CSS and Material Design by Google.
+                Expose and stem out information leakage, by distributing of
+                different versions of your unique sensitive document
               </Typography>
             </div>
           </div>

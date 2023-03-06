@@ -10,6 +10,8 @@ const CreateTraps = (props) => {
     description: "",
   });
 
+  //This part pulls the current "username" state of the logged-in user
+
   const handleChange = (e) => {
     setUpload({
       ...upload,

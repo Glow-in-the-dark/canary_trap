@@ -1,10 +1,8 @@
 import React from "react";
 import { Avatar, Typography, Button } from "@material-tailwind/react";
 import { Footer } from "../components/layout";
-import ExposeLeak from "../components/ExposeLeak";
-import CreateTraps from "../components/CreateTraps";
 
-export const Test = (props) => {
+export const AdminPage = (props) => {
   return (
     <>
       <section className="relative block h-[50vh]">
@@ -31,33 +29,17 @@ export const Test = (props) => {
               </div>
               <div className="my-8 text-center">
                 <Typography variant="h2" color="blue-gray" className="mb-2">
-                  Jenna Stones
+                  I AM ADMIN !
                 </Typography>
               </div>
               <div className="flex flex-wrap justify-center">
                 <div className="mb-10 flex w-full justify-center">
-                  <Button className="bg-blue-400">
-                    Update Personal Details
-                  </Button>
+                  <Button className="bg-blue-400 mr-4">Get all Projects</Button>
+                  <Button className="bg-blue-400 ml-4">Get all Users</Button>
                 </div>
               </div>
               <div className="mb-10 border-t border-blue-gray-50 py-6 text-center">
-                <div>
-                  <CreateTraps port={props && props.port} />
-                  <ExposeLeak port={props && props.port} />
-                </div>
-                <div className="mt-2 flex flex-wrap justify-center">
-                  <div className="flex w-full flex-col items-center px-4 lg:w-9/12">
-                    <Typography className="mb-8 font-normal text-blue-gray-500">
-                      An artist of considerable range, Jenna the name taken by
-                      Melbourne-raised, Brooklyn-based Nick Murphy writes,
-                      performs and records all of his own music, giving it a
-                      warm, intimate feel with a solid groove structure. An
-                      artist of considerable range.
-                    </Typography>
-                    <Button variant="text">Show more</Button>
-                  </div>
-                </div>
+                <div></div>
               </div>
             </div>
           </div>
@@ -70,4 +52,4 @@ export const Test = (props) => {
   );
 };
 
-export default Test;
+export default AdminPage;

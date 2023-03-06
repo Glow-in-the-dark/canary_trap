@@ -12,10 +12,18 @@ const callUserAPI = (store) => (next) => async (customActionJsonObject) => {
   }
 
   const state = store.getState();
-  console.log(state);
+  console.log("Store's State:", state);
   const { method, type, params, data, query, apiRoute } =
     customActionJsonObject;
+  console.log("This is 'data'", data);
   // TODO add headers from store
+
+  // ADV
+  //   types[PENDING_STATE_XXX, FAILED_STATE_XXX, SUCCESS_STATE_XX]
+  // next({
+  //     type: customActionJsonObject.type,
+  //     data: callResponse && callResponse.data, // this is action.data in reducer
+  //   });
 
   const callResponse = await axios({
     method,
@@ -26,9 +34,12 @@ const callUserAPI = (store) => (next) => async (customActionJsonObject) => {
     }, // you need to configure your authorization header
     data: data,
   });
-  console.log("call user api 6: whats my response ? @ Middleware");
+  console.log("call user api: whats my response ? @ Middleware");
   console.log(callResponse); // This callResponse is the Response i get after submit the API
   console.log("entering next middleware OR entering store STATE");
+
+  // ADV
+  //   types[PENDING_STATE_XXX, FAILED_STATE_XXX, SUCCESS_STATE_XX]
   next({
     type: customActionJsonObject.type,
     data: callResponse && callResponse.data, // this is action.data in reducer

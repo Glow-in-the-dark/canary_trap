@@ -80,6 +80,7 @@ export function SignUp(props) {
                   username: usernameInput,
                   email: emailInput,
                   password: passwordInput,
+                  isAdmin: false,
                 });
               }}
             >

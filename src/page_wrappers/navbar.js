@@ -5,6 +5,7 @@ import Navbar from "../components/layout/navbar";
 const mapStateToProps = (state) => ({
   usernameState: state.userStore.usernameState,
   emailState: state.userStore.emailState,
+  userObj: state.userStore.userObj,
 });
 
 const mapDispatchToProps = (dispatch) => ({
