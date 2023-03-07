@@ -55,7 +55,7 @@ export function Navbar(props) {
           to="/Create_Expose"
           className="flex items-center gap-1 p-1 font-normal"
         >
-          Create / Expose
+          Create
         </Link>
       )}
       <Link to="/adminPage" className="flex items-center gap-1 p-1 font-normal">
@@ -79,7 +79,7 @@ export function Navbar(props) {
       )}
       {usernameState && (
         <Typography className="mr-4 ml-2 cursor-pointer py-1.5 font-bold">
-          Hello! :{usernameState}
+          Hello! {usernameState}
         </Typography>
       )}
     </ul>

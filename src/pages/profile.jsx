@@ -5,8 +5,70 @@ import {
   BuildingLibraryIcon,
 } from "@heroicons/react/24/solid";
 import { Footer } from "../components/layout";
+import { useState, useEffect, useLayoutEffect } from "react";
+import axios from "axios";
 
-export function Profile() {
+export function Profile(props) {
+  const {
+    usernameState,
+    userObj,
+    accessToken,
+    dispatchUpdateUser,
+    dispatchGetUserProjects,
+    projects,
+    dispatchDeleteUserProject,
+  } = props;
+  const [newUsername, setNewUsername] = useState("");
+  const [file, setFile] = useState(null);
+
+  useLayoutEffect(() => {
+    console.log("first render!!");
+    console.log("userObj : ", userObj);
+    dispatchGetUserProjects();
+  }, []);
+
+  useEffect(() => {
+    console.log("some props have changed !");
+    console.log("userObj : ", userObj);
+  }, [userObj]);
+
+  // useEffect(() => {
+  //   dispatchGetUserProjects();
+  // }, []);
+
+  const uploadLeakedImage = async (e, eachProject) => {
+    e.preventDefault();
+    console.log("eachProject: ", eachProject);
+    const formData = new FormData(); // create an empty form data object
+    formData.append("projectId", eachProject._id);
+    formData.append("susLeakedImg", file);
+
+    // pass the form data object to the server endpoint
+    try {
+      const accessToken = window.localStorage.getItem("accessToken");
+      const response = await axios.post(
+        `http://localhost:5002/uploadImg/expose`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      console.log("response : ", response);
+      window.alert(JSON.stringify(response));
+    } catch (err) {
+      console.error(err);
+      window.alert(err);
+    }
+
+    // unable to console log the form data directly. need to deconstruct to view as per below
+    for (const pair of formData.entries()) {
+      console.log(pair[0] + ": " + pair[1]);
+    }
+  };
+
   return (
     <>
       <section className="relative block h-[50vh]">
@@ -30,82 +92,100 @@ export function Profile() {
                     </div>
                   </div>
                 </div>
-                <div className="mt-10 flex w-full justify-center px-4 lg:order-3 lg:mt-0 lg:w-4/12 lg:justify-end lg:self-center">
-                  <Button className="bg-blue-400">Conntect</Button>
-                </div>
-                <div className="w-full px-4 lg:order-1 lg:w-4/12">
-                  <div className="flex justify-center py-4 pt-8 lg:pt-4">
-                    <div className="mr-4 p-3 text-center">
-                      <Typography
-                        variant="lead"
-                        color="blue-gray"
-                        className="font-bold uppercase"
-                      >
-                        22
-                      </Typography>
-                      <Typography
-                        variant="small"
-                        className="font-normal text-blue-gray-500"
-                      >
-                        Friends
-                      </Typography>
-                    </div>
-                    <div className="mr-4 p-3 text-center">
-                      <Typography
-                        variant="lead"
-                        color="blue-gray"
-                        className="font-bold uppercase"
-                      >
-                        10
-                      </Typography>
-                      <Typography
-                        variant="small"
-                        className="font-normal text-blue-gray-500"
-                      >
-                        Photos
-                      </Typography>
-                    </div>
-                    <div className="p-3 text-center lg:mr-4">
-                      <Typography
-                        variant="lead"
-                        color="blue-gray"
-                        className="font-bold uppercase"
-                      >
-                        89
-                      </Typography>
-                      <Typography
-                        variant="small"
-                        className="font-normal text-blue-gray-500"
-                      >
-                        Comments
-                      </Typography>
-                    </div>
-                  </div>
-                </div>
               </div>
               <div className="my-8 text-center">
-                <Typography variant="h2" color="blue-gray" className="mb-2">
-                  Jenna Stones
+                <Typography
+                  variant="h2"
+                  color="blue-gray"
+                  className="mb-2"
+                  key={userObj && userObj.username}
+                >
+                  {userObj && userObj.username}
                 </Typography>
-                <div className="mb-16 flex items-center justify-center gap-2">
-                  <MapPinIcon className="-mt-px h-4 w-4 text-blue-gray-700" />
-                  <Typography className="font-medium text-blue-gray-700">
-                    Los Angeles, California
-                  </Typography>
-                </div>
-                <div className="mb-2 flex items-center justify-center gap-2">
-                  <BriefcaseIcon className="-mt-px h-4 w-4 text-blue-gray-700" />
-                  <Typography className="font-medium text-blue-gray-700">
-                    Solution Manager - Creative Tim Officer
-                  </Typography>
-                </div>
-                <div className="mb-2 flex items-center justify-center gap-2">
-                  <BuildingLibraryIcon className="-mt-px h-4 w-4 text-blue-gray-700" />
-                  <Typography className="font-medium text-blue-gray-700">
-                    University of Computer Science
-                  </Typography>
-                </div>
+                <input
+                  className="border-2 border-lightgray-200 mx-auto mb-2 rounded-lg p-1"
+                  placeholder="Your New Username"
+                  value={newUsername}
+                  onChange={(e) => setNewUsername(e.target.value)}
+                />
+                <Button
+                  onClick={(e) => {
+                    dispatchUpdateUser({ username: newUsername });
+                  }}
+                  variant="text"
+                >
+                  Update Username
+                </Button>
               </div>
+              {projects &&
+                projects.length &&
+                projects.map((eachProject) => {
+                  return (
+                    <>
+                      <div className="pb-7 bg-gray-100 rounded-2xl">
+                        <br />
+                        <h2 className="ml-5">
+                          <p className="font-bold">Project Title:</p>
+                          {eachProject && eachProject.title}
+                        </h2>
+                        <br />
+                        <div className="ml-5">
+                          <p className="font-bold">Project Description: </p>
+                          {eachProject && eachProject.description}
+                        </div>
+                        <br />
+                        <div className="ml-5">
+                          <p className="font-bold">Distributed to: </p>
+                          {eachProject &&
+                            eachProject.orig_img[0].namesArray.join(",")}
+                        </div>
+                        <br />
+                        <div className="ml-5">
+                          <p className="font-bold">
+                            {" "}
+                            Upload documents here to find out who leaked it:
+                          </p>
+                        </div>
+                        <form
+                          className="ml-5"
+                          onSubmit={(e) => uploadLeakedImage(e, eachProject)}
+                        >
+                          <label for="susLeakedImg"> Image</label>
+                          <input
+                            placeholder="Suspected Leaked Image"
+                            name="susLeakedImg"
+                            type="file"
+                            onChange={(e) => {
+                              setFile(e.target.files[0]);
+                            }}
+                          />
+                          {/* <input
+                          placeholder="Suspected Leaked Image ID"
+                          name="projectId"
+                          type="hidden"
+                          value={eachProject._id}
+                        /> */}
+                          <button className="mt-3 mx-14 inline-block px-6 py-2.5 bg-primary-600 text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-primary-800 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg transition duration-150 ease-in-out">
+                            SUBMIT IMAGE
+                          </button>
+                        </form>
+                        <button
+                          className="mt-3 mx-14 inline-block px-6 py-2.5 bg-red-400 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-primary-800 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg transition duration-150 ease-in-out"
+                          onClick={(e) => {
+                            console.log("eachProject : ", eachProject);
+                            console.log("eachProject._id : ", eachProject._id);
+                            dispatchDeleteUserProject({
+                              projectId: eachProject._id,
+                            });
+                          }}
+                        >
+                          delete Project
+                        </button>
+                      </div>
+                      <br />
+                    </>
+                  );
+                })}
 
               <div className="mb-10 border-t border-blue-gray-50 py-6 text-center">
                 <div className="mt-2 flex flex-wrap justify-center">

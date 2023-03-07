@@ -3,8 +3,10 @@ import { loginUser } from "../actions";
 import Create_Expose from "../pages/Create_Expose";
 
 const mapStateToProps = (state) => ({
-  usernameState: state.userStore.usernameState,
-  emailState: state.userStore.emailState,
+  usernameState: state.userStore && state.userStore.usernameState,
+  emailState: state.userStore && state.userStore.emailState,
+  accessToken: state.userStore && state.userStore.accessToken,
+  userObj: state.userStore && state.userStore.userObj,
 });
 
 const mapDispatchToProps = (dispatch) => ({

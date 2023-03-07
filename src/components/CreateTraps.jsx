@@ -10,6 +10,13 @@ const CreateTraps = (props) => {
     description: "",
   });
 
+  const accessToken = props.accessToken;
+  const { userObj } = props;
+
+  console.log("userObj : ", userObj);
+
+  // console.log("This is username propped down", props.usernameState);
+
   //This part pulls the current "username" state of the logged-in user
 
   const handleChange = (e) => {
@@ -25,6 +32,7 @@ const CreateTraps = (props) => {
     const formData = new FormData(); // create an empty form data object
 
     // populate the form data object with input data (file always have to be the last)
+    formData.append("username", props.usernameState);
     formData.append("title", upload.title);
     formData.append("qty", upload.qty);
     formData.append("names", upload.names);
@@ -32,6 +40,7 @@ const CreateTraps = (props) => {
     formData.append("originalImg", file);
 
     // pass the form data object to the server endpoint
+    console.log("accessToken : ", accessToken);
     try {
       const response = await axios.post(
         `http://localhost:${props.port}/uploadImg/create`,
@@ -40,7 +49,7 @@ const CreateTraps = (props) => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            // Authorization: `Bearer ${ctx.ACCESS_TOKEN}`,
+            Authorization: accessToken ? `Bearer ${accessToken}` : "",
           },
         }
       );

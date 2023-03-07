@@ -13,8 +13,7 @@ const callUserAPI = (store) => (next) => async (customActionJsonObject) => {
 
   const state = store.getState();
   console.log("Store's State:", state);
-  const { method, type, params, data, query, apiRoute } =
-    customActionJsonObject;
+  let { method, type, params, data, query, apiRoute } = customActionJsonObject;
   console.log("This is 'data'", data);
   // TODO add headers from store
 
@@ -24,14 +23,44 @@ const callUserAPI = (store) => (next) => async (customActionJsonObject) => {
   //     type: customActionJsonObject.type,
   //     data: callResponse && callResponse.data, // this is action.data in reducer
   //   });
+  const accessToken = window.localStorage.getItem("accessToken");
+
+  let headers = { "Content-Type": "application/json" };
+
+  if (accessToken) headers["Authorization"] = `Bearer ${accessToken}`;
+
+  if (params && Object.keys(params).length) {
+    // object.key list the keys into an array
+    // e.g. apiRoute /users/projects/:projectId
+    // make api route string to array
+    let tempApiRouteArr = apiRoute.split("/");
+    // [users,projects,:projectId]
+    // loop through apiRouteArr
+    tempApiRouteArr = tempApiRouteArr.map((eachParam) => {
+      // check for colon signal
+      if (eachParam[0] === ":") {
+        // :projectId
+        let targetParam = eachParam.slice(1);
+        // projectId
+        // find the correct key in "params" object and return the value
+        // {projectId: "abc123456asdasdadsasdasd"}
+        return params[targetParam];
+      }
+      // ELSE return the same string
+      return eachParam;
+    });
+    // so after returns, it becomes
+    // tempApiRouteArr = [users,projects,abc123456asdasdadsasdasd]
+
+    apiRoute = tempApiRouteArr.join("/");
+    // [users/projects/abc123456asdasdadsasdasd]
+  }
 
   const callResponse = await axios({
     method,
     baseURL: host,
     url: apiRoute,
-    headers: {
-      "Content-Type": "application/json",
-    }, // you need to configure your authorization header
+    headers: headers, // you need to configure your authorization header
     data: data,
   });
   console.log("call user api: whats my response ? @ Middleware");

@@ -13,9 +13,9 @@ import {
   DocumentTextIcon,
 } from "@heroicons/react/24/solid";
 import Home from "./pages/home";
-import Profile from "./pages/profile";
+import Profile from "./page_wrappers/profile";
 import Create_Expose from "./page_wrappers/Create_Expose";
-import Admin from "./pages/adminPage";
+import Admin from "./page_wrappers/adminPage";
 import SignIn from "./page_wrappers/sign-in";
 import SignUp from "./page_wrappers/sign-up";
 // import { Navbar } from "./components/layout";

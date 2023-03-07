@@ -5,7 +5,7 @@ import ExposeLeak from "../components/ExposeLeak";
 import CreateTraps from "../components/CreateTraps";
 
 export const Create_Expose = (props) => {
-  const { usernameState, userObj } = props;
+  const { usernameState, userObj, accessToken } = props;
 
   console.log("this is userObj", userObj);
 
@@ -38,15 +38,12 @@ export const Create_Expose = (props) => {
                   {usernameState}
                 </Typography>
               </div>
-              <div className="flex flex-wrap justify-center">
-                <div className="mb-10 flex w-full justify-center">
-                  <Button className="bg-blue-400">
-                    Update Personal Details
-                  </Button>
-                </div>
-              </div>
               <div className="mb-10 border-t border-blue-gray-50 py-6 text-center">
-                <CreateTraps port={props && props.port} />
+                <CreateTraps
+                  port={props && props.port}
+                  accessToken={accessToken}
+                  userObj={userObj}
+                />
               </div>
               <div className="mb-10 border-t border-blue-gray-50 py-6 text-center">
                 <ExposeLeak port={props && props.port} />

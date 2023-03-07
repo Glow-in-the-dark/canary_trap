@@ -7,17 +7,18 @@ const ExposeLeak = (props) => {
   const uploadLeakedImage = async (e) => {
     e.preventDefault();
     const formData = new FormData(); // create an empty form data object
+    formData.append("projectId", "640602f0ed19f9bafc99585f");
     formData.append("susLeakedImg", file);
 
     // pass the form data object to the server endpoint
     try {
       const response = await axios.post(
-        `http://localhost:${props.port}/uploadImg/expose`,
+        `http://localhost:5002/uploadImg/expose`,
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            // Authorization: `Bearer ${ctx.ACCESS_TOKEN}`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDU4OTZjNTU2NjIwYzM4MjY1Y2E2ZiIsImVtYWlsIjoiZ2xvd0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6ImFzZCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3ODExNTUzMCwiZXhwIjoxNjc4MTE5MTMwLCJqdGkiOiJhOGIzYjI2Ny0wZWJkLTQzNTYtOGFkZC0wM2Q1NTEyM2RlOWYifQ.vDfB03GbZFuOLbRJs1R95Lob15Z_jp7fXbJoncXoQEE`,
           },
         }
       );

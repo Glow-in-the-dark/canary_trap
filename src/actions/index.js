@@ -1,3 +1,18 @@
-import { createUser, loginUser } from "./user";
+import {
+  createUser,
+  loginUser,
+  updateUser,
+  getUserProjects,
+  deleteUserProject,
+} from "./user";
+import { getAllProjects, deleteProj } from "./admin";
 
-export { createUser, loginUser };
+export {
+  createUser,
+  loginUser,
+  updateUser,
+  getUserProjects,
+  getAllProjects,
+  deleteProj,
+  deleteUserProject,
+};
