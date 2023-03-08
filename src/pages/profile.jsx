@@ -1,9 +1,4 @@
 import { Avatar, Typography, Button } from "@material-tailwind/react";
-import {
-  MapPinIcon,
-  BriefcaseIcon,
-  BuildingLibraryIcon,
-} from "@heroicons/react/24/solid";
 import { Footer } from "../components/layout";
 import { useState, useEffect, useLayoutEffect } from "react";
 import axios from "axios";
@@ -137,12 +132,13 @@ export function Profile(props) {
                         <div className="ml-5">
                           <p className="font-bold">Distributed to: </p>
                           {eachProject &&
+                            eachProject.orig_img &&
+                            eachProject.orig_img[0] &&
                             eachProject.orig_img[0].namesArray.join(",")}
                         </div>
                         <br />
                         <div className="ml-5">
                           <p className="font-bold">
-                            {" "}
                             Upload documents here to find out who leaked it:
                           </p>
                         </div>
@@ -159,12 +155,6 @@ export function Profile(props) {
                               setFile(e.target.files[0]);
                             }}
                           />
-                          {/* <input
-                          placeholder="Suspected Leaked Image ID"
-                          name="projectId"
-                          type="hidden"
-                          value={eachProject._id}
-                        /> */}
                           <button className="mt-3 mx-14 inline-block px-6 py-2.5 bg-primary-600 text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-primary-800 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg transition duration-150 ease-in-out">
                             SUBMIT IMAGE
                           </button>

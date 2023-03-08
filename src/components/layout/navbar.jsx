@@ -44,12 +44,14 @@ export function Navbar(props) {
         })}
         Home
       </Link>
-      <Link to="/profile" className="flex items-center gap-1 p-1 font-normal">
-        {React.createElement(UserCircleIcon, {
-          className: "w-[18px] h-[18px] opacity-75 mr-1",
-        })}
-        Profile
-      </Link>
+      {usernameState && (
+        <Link to="/profile" className="flex items-center gap-1 p-1 font-normal">
+          {React.createElement(UserCircleIcon, {
+            className: "w-[18px] h-[18px] opacity-75 mr-1",
+          })}
+          Profile
+        </Link>
+      )}
       {usernameState && (
         <Link
           to="/Create_Expose"

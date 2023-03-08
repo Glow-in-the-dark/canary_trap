@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { Avatar, Typography, Button } from "@material-tailwind/react";
 import { Footer } from "../components/layout";
 
 export const AdminPage = (props) => {
+  const {
+    dispatchAdminGetAllProjects,
+    dispatchAdminGetAllUsers,
+    dispatchAdminDeleteProj,
+    dispatchAdminDeleteUser,
+    projects,
+    allUsers,
+  } = props;
+
+  useLayoutEffect(() => {
+    dispatchAdminGetAllProjects();
+    dispatchAdminGetAllUsers();
+  }, []);
+
   return (
     <>
       <section className="relative block h-[50vh]">
@@ -29,17 +43,125 @@ export const AdminPage = (props) => {
               </div>
               <div className="my-8 text-center">
                 <Typography variant="h2" color="blue-gray" className="mb-2">
-                  I AM ADMIN !
+                  ADMIN
                 </Typography>
               </div>
               <div className="flex flex-wrap justify-center">
                 <div className="mb-10 flex w-full justify-center">
-                  <Button className="bg-blue-400 mr-4">Get all Projects</Button>
-                  <Button className="bg-blue-400 ml-4">Get all Users</Button>
+                  <Button
+                    onClick={(e) => dispatchAdminGetAllProjects()}
+                    className="bg-blue-400 mr-4"
+                  >
+                    Get all Projects
+                  </Button>
+                  <Button
+                    onClick={(e) => dispatchAdminGetAllUsers()}
+                    className="bg-blue-400 ml-4"
+                  >
+                    Get all Users
+                  </Button>
                 </div>
               </div>
-              <div className="mb-10 border-t border-blue-gray-50 py-6 text-center">
-                <div></div>
+              <div className="flex space-x-64">
+                <div className="mb-10  border-t border-blue-gray-50 py-6 text-center">
+                  {/* This Part displays the LIST of all Projects */}
+                  {/* <div>{JSON.stringify(projects)}</div> */}
+                  <div className="font-bold text-2xl mb-5 underline">
+                    All Projects
+                  </div>
+                  {projects &&
+                    projects.length &&
+                    projects.map((eachProject) => {
+                      return (
+                        <>
+                          <div className="pb-7 bg-gray-100 rounded-2xl">
+                            <br />
+                            <h2 className="ml-5">
+                              <p className="font-bold">Project ID:</p>
+                              {eachProject && eachProject._id}
+                            </h2>
+                            <br />
+                            <h2 className="ml-5">
+                              <p className="font-bold">Project Title:</p>
+                              {eachProject && eachProject.title}
+                            </h2>
+                            <br />
+                            <div className="ml-5">
+                              <p className="font-bold">Project Description: </p>
+                              {eachProject && eachProject.description}
+                            </div>
+                            <br />
+                            <button
+                              className="mt-3 mx-14 inline-block px-6 py-2.5 bg-red-400 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-primary-800 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg transition duration-150 ease-in-out"
+                              onClick={(e) => {
+                                console.log("eachProject : ", eachProject);
+                                console.log(
+                                  "eachProject._id : ",
+                                  eachProject._id
+                                );
+                                dispatchAdminDeleteProj({
+                                  projectId: eachProject._id,
+                                });
+                              }}
+                            >
+                              delete Project
+                            </button>
+                          </div>
+                          <br />
+                        </>
+                      );
+                    })}
+                </div>
+                <div className="mb-10  border-t border-blue-gray-50 py-6 text-center">
+                  {/* This Part displays the LIST of all Users */}
+                  <div className="font-bold text-2xl mb-5 underline">
+                    All Users
+                  </div>
+                  {/* <div>{JSON.stringify(allUsers)}</div> */}
+                  {allUsers &&
+                    allUsers.map((eachUser) => {
+                      return (
+                        <>
+                          <div className="pb-7 bg-gray-100 rounded-2xl">
+                            <br />
+                            <h2 className="ml-5">
+                              <p className="font-bold">User ID:</p>
+                              {eachUser && eachUser._id}
+                            </h2>
+                            <br />
+                            <h2 className="ml-5">
+                              <p className="font-bold">Username:</p>
+                              {eachUser && eachUser.username}
+                            </h2>
+                            <br />
+                            <div className="ml-5">
+                              <p className="font-bold">User's email: </p>
+                              {eachUser && eachUser.email}
+                            </div>
+                            <br />
+                            {/* <div className="ml-5">
+                              <p className="font-bold">isAdmin: </p>
+                              {eachUser && eachUser.isAdmin}
+                            </div>
+                            <br /> */}
+                            <button
+                              className="mt-3 mx-14 inline-block px-6 py-2.5 bg-red-400 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-primary-800 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg transition duration-150 ease-in-out"
+                              onClick={(e) => {
+                                console.log("eachUser : ", eachUser);
+                                console.log("eachUser._id : ", eachUser._id);
+                                dispatchAdminDeleteUser({
+                                  userId: eachUser._id,
+                                });
+                              }}
+                            >
+                              Delete User
+                            </button>
+                          </div>
+                          <br />
+                        </>
+                      );
+                    })}
+                </div>
               </div>
             </div>
           </div>

@@ -1,5 +1,10 @@
 import { connect } from "react-redux";
-import { getAllProjects } from "../actions";
+import {
+  adminGetAllProjects,
+  adminGetAllUsers,
+  adminDeleteProj,
+  adminDeleteUser,
+} from "../actions";
 import adminPage from "../pages/adminPage";
 
 const mapStateToProps = (state) => ({
@@ -7,20 +12,28 @@ const mapStateToProps = (state) => ({
   emailState: state.userStore.emailState,
   userObj: state.userStore.userObj,
   projects: state.userStore.projects,
+  allUsers: state.userStore.allUsers,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  //This is how u store a function in a key, and then used later
-  //   dispatchUpdateUser: (requestBody) => {
-  //     console.log("getting customJSON OBJ:");
-  //     // this part is the part which actually runs redux.
-  //     const customActionJsonObject = updateUser(requestBody);
-  //     console.log("Starting DISPATCH");
-  //     dispatch(customActionJsonObject);
-  //   },
-  dispatchGetAllProjects: () => {
-    const customActionJsonObject = getAllProjects();
-    console.log("Starting DISPATCH for ADMIN getAllProjects");
+  dispatchAdminGetAllProjects: () => {
+    const customActionJsonObject = adminGetAllProjects();
+    console.log("Starting DISPATCH for ADMIN adminGetAllProjects");
+    dispatch(customActionJsonObject);
+  },
+  dispatchAdminGetAllUsers: () => {
+    const customActionJsonObject = adminGetAllUsers();
+    console.log("Starting DISPATCH for ADMIN adminGetAllUsers");
+    dispatch(customActionJsonObject);
+  },
+  dispatchAdminDeleteProj: (requestBody) => {
+    const customActionJsonObject = adminDeleteProj(requestBody);
+    console.log("Starting DISPATCH for ADMIN adminDeleteProj");
+    dispatch(customActionJsonObject);
+  },
+  dispatchAdminDeleteUser: (requestBody) => {
+    const customActionJsonObject = adminDeleteUser(requestBody);
+    console.log("Starting DISPATCH for ADMIN adminDeleteUser");
     dispatch(customActionJsonObject);
   },
 });

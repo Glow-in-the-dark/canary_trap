@@ -45,9 +45,6 @@ export const Create_Expose = (props) => {
                   userObj={userObj}
                 />
               </div>
-              <div className="mb-10 border-t border-blue-gray-50 py-6 text-center">
-                <ExposeLeak port={props && props.port} />
-              </div>
               <div className="mt-2 flex flex-wrap justify-center">
                 <div className="flex w-full flex-col items-center px-4 lg:w-9/12">
                   <Typography className="mb-8 font-normal text-blue-gray-500">

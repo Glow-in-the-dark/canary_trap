@@ -71,6 +71,20 @@ export const userStore = (state = {}, action) => {
           action.data.projects &&
           JSON.parse(JSON.stringify(action.data.projects)),
       };
+    case "ADMIN_GET_ALL_PROJECTS":
+      console.log("ADMIN_GET_ALL_PROJECTS", action);
+      return {
+        ...state,
+        projects: action.data,
+        // action.data.projects &&
+        // JSON.parse(JSON.stringify(action.data.projects)),
+      };
+    case "ADMIN_GET_USER_PROJECTS":
+      console.log("ADMIN_GET_USER_PROJECTS", action);
+      return {
+        ...state,
+        allUsers: action.data,
+      };
     default:
       return {
         ...state,

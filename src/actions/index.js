@@ -1,18 +1,25 @@
 import {
   createUser,
   loginUser,
+  // protected user endpoints
   updateUser,
   getUserProjects,
   deleteUserProject,
+  // Admin Only
+  adminGetAllProjects,
+  adminGetAllUsers,
+  adminDeleteProj,
+  adminDeleteUser,
 } from "./user";
-import { getAllProjects, deleteProj } from "./admin";
 
 export {
   createUser,
   loginUser,
   updateUser,
   getUserProjects,
-  getAllProjects,
-  deleteProj,
   deleteUserProject,
+  adminGetAllProjects,
+  adminGetAllUsers,
+  adminDeleteProj,
+  adminDeleteUser,
 };

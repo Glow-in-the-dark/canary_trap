@@ -29,6 +29,7 @@ const callUserAPI = (store) => (next) => async (customActionJsonObject) => {
 
   if (accessToken) headers["Authorization"] = `Bearer ${accessToken}`;
 
+  // This part is to check for DELETE, because for delete, we pass params and delete from there.
   if (params && Object.keys(params).length) {
     // object.key list the keys into an array
     // e.g. apiRoute /users/projects/:projectId

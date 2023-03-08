@@ -43,13 +43,36 @@ export const deleteUserProject = (params) => ({
   params: params,
 });
 
-// Todos: DELETE only owners' Proj,
+// Todos: ADMIN FUNCTIONS ------------------------------------
 
-export const deleteUserProjects = () => ({
-  // type: "GET_USER_PROJECTS",
-  // method: "get",
-  // apiRoute: "/users/projects",
-  // CALL_USER_API: true,
+export const adminGetAllProjects = () => ({
+  type: "ADMIN_GET_ALL_PROJECTS",
+  method: "get",
+  apiRoute: "/users/adminGetAllProjects",
+  CALL_USER_API: true,
+});
+
+export const adminGetAllUsers = () => ({
+  type: "ADMIN_GET_USER_PROJECTS",
+  method: "get",
+  apiRoute: "/users/adminGetAllUsers",
+  CALL_USER_API: true,
+});
+
+export const adminDeleteProj = (params) => ({
+  type: "ADMIN_DELETE_PROJECT",
+  method: "delete",
+  apiRoute: "/users/adminDeleteProj/:projectId",
+  CALL_USER_API: true,
+  params: params,
+});
+
+export const adminDeleteUser = (params) => ({
+  type: "ADMIN_DELETE_USER",
+  method: "delete",
+  apiRoute: "/users/adminDeleteUser/:userId",
+  CALL_USER_API: true,
+  params: params,
 });
 
 //Todo: Update ownly own's project Description
