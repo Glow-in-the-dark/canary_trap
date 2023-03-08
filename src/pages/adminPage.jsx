@@ -43,7 +43,7 @@ export const AdminPage = (props) => {
               </div>
               <div className="my-8 text-center">
                 <Typography variant="h2" color="blue-gray" className="mb-2">
-                  ADMIN
+                  ADMIN PAGE
                 </Typography>
               </div>
               <div className="flex flex-wrap justify-center">
@@ -62,7 +62,7 @@ export const AdminPage = (props) => {
                   </Button>
                 </div>
               </div>
-              <div className="flex space-x-64">
+              <div className="flex flex-wrap justify-center space-x-14">
                 <div className="mb-10  border-t border-blue-gray-50 py-6 text-center">
                   {/* This Part displays the LIST of all Projects */}
                   {/* <div>{JSON.stringify(projects)}</div> */}
@@ -74,7 +74,7 @@ export const AdminPage = (props) => {
                     projects.map((eachProject) => {
                       return (
                         <>
-                          <div className="pb-7 bg-gray-100 rounded-2xl">
+                          <div className="pb-7 bg-gray-100 rounded-2xl pr-5">
                             <br />
                             <h2 className="ml-5">
                               <p className="font-bold">Project ID:</p>
@@ -122,7 +122,7 @@ export const AdminPage = (props) => {
                     allUsers.map((eachUser) => {
                       return (
                         <>
-                          <div className="pb-7 bg-gray-100 rounded-2xl">
+                          <div className="pb-7 bg-gray-100 rounded-2xl pr-6">
                             <br />
                             <h2 className="ml-5">
                               <p className="font-bold">User ID:</p>
