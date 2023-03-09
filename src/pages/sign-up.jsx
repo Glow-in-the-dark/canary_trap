@@ -1,4 +1,4 @@
-import { react, useState } from "react";
+import { react, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -19,6 +19,12 @@ export function SignUp(props) {
   const [usernameInput, setUsernameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
+
+  // useEffect(() => {
+  //   if (currentUser2) {
+  //     window.location.href = window.location.href + "/sign-in";
+  //   }
+  // }, [currentUser2]);
 
   return (
     <>

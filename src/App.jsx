@@ -25,19 +25,11 @@ function App() {
   const port_no = 5002;
 
   return (
-    // <div>
-    //   <CreateTraps port={port_no} />
-    //   <ExposeLeak port={port_no} />
-    // </div>
     <>
       <div className="container absolute left-2/4 z-10 mx-auto -translate-x-2/4 p-4">
         <NavBar />
       </div>
       <Routes>
-        {/* {routes.map(
-          ({ path, element }, key) =>
-            element && <Route key={key} exact path={path} element={element} />
-        )} */}
         <Route path="/" element={<Navigate replace to="/home" />} />
         <Route path="/home" element={<Home />} icon={HomeIcon} />
         <Route path="/profile" element={<Profile />} icon={UserCircleIcon} />

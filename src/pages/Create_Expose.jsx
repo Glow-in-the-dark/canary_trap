@@ -45,18 +45,6 @@ export const Create_Expose = (props) => {
                   userObj={userObj}
                 />
               </div>
-              <div className="mt-2 flex flex-wrap justify-center">
-                <div className="flex w-full flex-col items-center px-4 lg:w-9/12">
-                  <Typography className="mb-8 font-normal text-blue-gray-500">
-                    An artist of considerable range, Jenna the name taken by
-                    Melbourne-raised, Brooklyn-based Nick Murphy writes,
-                    performs and records all of his own music, giving it a warm,
-                    intimate feel with a solid groove structure. An artist of
-                    considerable range.
-                  </Typography>
-                  <Button variant="text">Show more</Button>
-                </div>
-              </div>
             </div>
           </div>
         </div>

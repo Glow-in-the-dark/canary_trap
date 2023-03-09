@@ -52,7 +52,13 @@ export function Profile(props) {
         }
       );
       console.log("response : ", response);
-      window.alert(JSON.stringify(response));
+      const name =
+        (response &&
+          response.data &&
+          response.data.name &&
+          "Match found: " + response.data.name) ||
+        (response && response.data && response.data.message);
+      window.alert(name);
     } catch (err) {
       console.error(err);
       window.alert(err);
@@ -155,22 +161,27 @@ export function Profile(props) {
                               setFile(e.target.files[0]);
                             }}
                           />
-                          <button className="mt-3 mx-14 inline-block px-6 py-2.5 bg-primary-600 text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-primary-800 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg transition duration-150 ease-in-out">
+                          <button className="mt-3 mx-3 inline-block px-6 py-2.5 bg-primary-600 text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-primary-800 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg transition duration-150 ease-in-out">
                             SUBMIT IMAGE
                           </button>
                         </form>
-                        <button
-                          className="mt-3 mx-14 inline-block px-6 py-2.5 bg-red-400 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-primary-800 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg transition duration-150 ease-in-out"
-                          onClick={(e) => {
-                            console.log("eachProject : ", eachProject);
-                            console.log("eachProject._id : ", eachProject._id);
-                            dispatchDeleteUserProject({
-                              projectId: eachProject._id,
-                            });
-                          }}
-                        >
-                          delete Project
-                        </button>
+                        <div className="justify-center mx-auto content-center ">
+                          <button
+                            className="mt-3  inline-block px-6 py-2.5 bg-red-400 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-primary-800 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg transition duration-150 ease-in-out"
+                            onClick={(e) => {
+                              console.log("eachProject : ", eachProject);
+                              console.log(
+                                "eachProject._id : ",
+                                eachProject._id
+                              );
+                              dispatchDeleteUserProject({
+                                projectId: eachProject._id,
+                              });
+                            }}
+                          >
+                            delete Project
+                          </button>
+                        </div>
                       </div>
                       <br />
                     </>
@@ -181,13 +192,13 @@ export function Profile(props) {
                 <div className="mt-2 flex flex-wrap justify-center">
                   <div className="flex w-full flex-col items-center px-4 lg:w-9/12">
                     <Typography className="mb-8 font-normal text-blue-gray-500">
-                      An artist of considerable range, Jenna the name taken by
-                      Melbourne-raised, Brooklyn-based Nick Murphy writes,
-                      performs and records all of his own music, giving it a
-                      warm, intimate feel with a solid groove structure. An
-                      artist of considerable range.
+                      This is your full personal list of created projects.
+                      Upload the suspected leaked documents here to find out the
+                      source of leakage. Future features include, reinterpreting
+                      the project description portions into chatgpt, which will
+                      then autogenerate multiple different variation of the same
+                      content and distributed.
                     </Typography>
-                    <Button variant="text">Show more</Button>
                   </div>
                 </div>
               </div>

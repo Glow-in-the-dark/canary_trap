@@ -18,7 +18,7 @@ export function Home() {
   return (
     <>
       <div className="relative flex h-screen content-center items-center justify-center pt-16 pb-32">
-        <div className="absolute top-0 h-full w-full bg-[url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80')] bg-cover bg-center" />
+        <div className="absolute top-0 h-full w-full bg-[url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80')] bg-cover bg-center" />
         <div className="absolute top-0 h-full w-full bg-black/75 bg-cover bg-center" />
         <div className="max-w-8xl container relative mx-auto">
           <div className="flex flex-wrap items-center">
@@ -40,8 +40,8 @@ export function Home() {
       </div>
       <section className="-mt-32 bg-gray-50 px-4 pb-20 pt-4">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {featuresData.map(({ color, title, icon, description }) => (
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {featuresData.map(({ color, title, icon, description, price }) => (
               <FeatureCard
                 key={title}
                 color={color}
@@ -50,6 +50,7 @@ export function Home() {
                   className: "w-5 h-5 text-white",
                 })}
                 description={description}
+                price={price}
               />
             ))}
           </div>
@@ -63,17 +64,24 @@ export function Home() {
                 className="mb-3 font-bold"
                 color="blue-gray"
               >
-                Working with us is a pleasure
+                Introducing Canary Trap.
               </Typography>
               <Typography className="mb-8 font-normal text-blue-gray-500">
-                Don't let your uses guess by attaching tooltips and popoves to
-                any element. Just make sure you enable them first via
-                JavaScript.
+                Nope, it’s not for catching cute little yellow birds! A canary
+                trap is a weapon of espionage! It’s an effective method to
+                detect and plug information leakages — This crafty tactic
+                enables one to determine which individual is revealing
+                confidential information when they are instructed to keep it
+                private.
                 <br />
                 <br />
-                The kit comes with three pre-built pages to help you get started
-                faster. You can change the text and images and you're good to
-                go. Just make sure you enable them first via JavaScript.
+                Here’s how a canary trap works: The process of a canary trap
+                involves distributing a memo containing confidential information
+                to a group of individuals, also referred to as canaries.
+                However, the phrasing in each memo copy is slightly altered. If
+                the information becomes exposed to an unauthorized individual,
+                the leaked text discloses which version of the memo was
+                disclosed and thus, the source of the leak is exposed.
               </Typography>
               <Button variant="outlined">read more</Button>
             </div>
@@ -82,7 +90,7 @@ export function Home() {
                 <CardHeader className="relative h-56">
                   <img
                     alt="Card Image"
-                    src="/img/teamwork.jpeg"
+                    src="/img/RGB_2.png"
                     className="h-full w-full"
                   />
                 </CardHeader>
@@ -92,12 +100,13 @@ export function Home() {
                     color="blue-gray"
                     className="mb-3 font-bold"
                   >
-                    Top Notch Services
+                    What we do:
                   </Typography>
                   <Typography className="font-normal text-blue-gray-500">
-                    The Arctic Ocean freezes every winter and much of the
-                    sea-ice then thaws every summer, and that process will
-                    continue whatever happens.
+                    We embedded visually undetectable information into your
+                    digital documents. In the event when the confidential
+                    information is leaked, or shared, it would be possible to
+                    trace the leakage.
                   </Typography>
                 </CardBody>
               </Card>
@@ -105,12 +114,12 @@ export function Home() {
           </div>
         </div>
       </section>
-      <section className="px-4 pt-20 pb-48">
+      <section className="px-4 pt-20 pb-18">
         <div className="container mx-auto">
           <PageTitle heading="Here are our heroes">
-            According to the National Oceanic and Atmospheric Administration,
-            Ted, Scambos, NSIDClead scentist, puts the potentially record
-            maximum.
+            Here is a bunch of meme loving nerds. If you can't beat them, join
+            them. Just look at how happy our CFO is sitting right in front of
+            Vitalik Buterin
           </PageTitle>
           <div className="mt-24 grid grid-cols-1 gap-12 gap-x-24 md:grid-cols-2 xl:grid-cols-4">
             {teamData.map(({ img, name, position, socials }) => (
@@ -133,13 +142,17 @@ export function Home() {
           </div>
         </div>
       </section>
+
       <section className="relative bg-blue-gray-50/50 py-24 px-4">
         <div className="container mx-auto">
           <PageTitle heading="Build something">
-            Put the potentially record low maximum sea ice extent tihs year down
-            to low ice. According to the National Oceanic and Atmospheric
-            Administration, Ted, Scambos.
+            Lets play a game. Are you able to tell the difference ?
           </PageTitle>
+          <br />
+          <div className="flex flex-wrap justify-center space-x-8">
+            <img className="rounded-3xl" src="./public//img/agreement.jpeg" />
+            <img className="rounded-3xl" src="./public//img/agreement.jpeg" />
+          </div>
           <div className="mx-auto mt-20 mb-48 grid max-w-5xl grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-3">
             {contactData.map(({ title, icon, description }) => (
               <Card

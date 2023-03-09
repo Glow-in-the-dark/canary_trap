@@ -5,6 +5,7 @@ import signInPage from "../pages/sign-in";
 const mapStateToProps = (state) => ({
   usernameState: state.userStore.usernameState,
   emailState: state.userStore.emailState,
+  userObj: state.userStore && state.userStore.userObj,
 });
 
 const mapDispatchToProps = (dispatch) => ({

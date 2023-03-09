@@ -6,22 +6,22 @@ import {
 
 export const contactData = [
   {
-    title: "Excelent Services",
+    title: "Excellent Services",
     icon: StarIcon,
     description:
-      "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      "Awarded best service in 2025, just give us some time to prove it.",
   },
   {
     title: "Grow Your Market",
     icon: PresentationChartLineIcon,
     description:
-      "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      "Recent growth is largely due to Doc-sign embedding our technology to enhance their customer's confidentiality",
   },
   {
     title: "Launch Time",
     icon: RocketLaunchIcon,
     description:
-      "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      "We have launched our MVP, our next feature would allow even 'CROPPED' images to be detectable.",
   },
 ];
 

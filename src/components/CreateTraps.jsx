@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Typography } from "@material-tailwind/react";
 
 const CreateTraps = (props) => {
   const [file, setFile] = useState(null);
@@ -74,9 +75,13 @@ const CreateTraps = (props) => {
   };
   return (
     <div>
-      <h2>Canary Trap</h2>
+      <Typography variant="h3" className="mb-3 font-bold" color="blue-gray">
+        Create Multiple Distributions
+      </Typography>
+      <br />
       <form className="" onSubmit={(e) => uploadImage(e)}>
-        <label for="title">Title</label>
+        <label for="title">Title :</label>
+        <br />
         <input
           className="border-2 border-lightgray-200 mb-2 rounded-lg p-1"
           placeholder="Document's Title"
@@ -88,7 +93,8 @@ const CreateTraps = (props) => {
           }}
         />
         <br />
-        <label for="qty">Quantity</label>
+        <label for="qty">Quantity :</label>
+        <br />
         <input
           className="border-2 border-lightgray-200 mx-auto mb-2 rounded-lg p-1"
           placeholder="Quantity for Distribution"
@@ -98,11 +104,10 @@ const CreateTraps = (props) => {
           onChange={(e) => handleChange(e)}
         />
         <br />
+        <label for="names">Names: </label>
         <div>
-          Key in individual names for distributions. Ensure the number of name
-          matches the number of Quantity above. (names are separated by commas.){" "}
+          (Number of names must tally with the number of Quantity above.)
         </div>
-        <label for="names">Names</label>
         <input
           className="border-2 border-lightgray-200 mx-auto mb-2 rounded-lg p-1"
           placeholder="e.g: John,Peter,Mary "
@@ -112,15 +117,18 @@ const CreateTraps = (props) => {
           onChange={(e) => handleChange(e)}
         />
         <br />
-        <label for="originalImg">Image</label>
+        <label for="originalImg">Image :</label>
+        <br />
         <input
+          className="ml-28"
           placeholder="Original Image"
           name="originalImg"
           type="file"
           onChange={(e) => setFile(e.target.files[0])}
         />
         <br />
-        <label for="description">Description</label>
+        <label for="description">Description :</label>
+        <br />
         <input
           className="border-2 border-lightgray-200 mx-auto mb-2 rounded-lg p-1"
           placeholder="Description"

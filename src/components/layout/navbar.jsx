@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import {
   Navbar as MTNavbar,
@@ -57,15 +56,23 @@ export function Navbar(props) {
           to="/Create_Expose"
           className="flex items-center gap-1 p-1 font-normal"
         >
+          {React.createElement(DocumentTextIcon, {
+            className: "w-[18px] h-[18px] opacity-75 mr-1",
+          })}
           Create
         </Link>
       )}
-      <Link to="/adminPage" className="flex items-center gap-1 p-1 font-normal">
-        Admin
-      </Link>
+      {isAdmin && (
+        <Link
+          to="/adminPage"
+          className="flex items-center gap-1 p-1 font-normal"
+        >
+          Admin
+        </Link>
+      )}
       {!usernameState && (
         <Link to="/sign-in" className="flex items-center gap-1 p-1 font-normal">
-          {React.createElement(UserCircleIcon, {
+          {React.createElement(ArrowRightOnRectangleIcon, {
             className: "w-[18px] h-[18px] opacity-75 mr-1",
           })}
           Sign In
@@ -73,7 +80,7 @@ export function Navbar(props) {
       )}
       {!usernameState && (
         <Link to="/sign-up" className="flex items-center gap-1 p-1 font-normal">
-          {React.createElement(UserCircleIcon, {
+          {React.createElement(UserPlusIcon, {
             className: "w-[18px] h-[18px] opacity-75 mr-1",
           })}
           Sign Up
@@ -130,46 +137,11 @@ export function Navbar(props) {
           className="rounded-xl bg-white px-4 pt-2 pb-4 text-blue-gray-900"
           open={openNav}
         >
-          <div className="container mx-auto">
-            {navList}
-            {/* <a
-            href="https://www.material-tailwind.com/blocks/react?ref=mtkr"
-            target="_blank"
-            className="mb-2 block"
-          >
-            <Button variant="text" size="sm" fullWidth>
-              pro version
-            </Button>
-          </a>
-          {React.cloneElement(action, {
-            className: "w-full block",
-          })} */}
-          </div>
+          <div className="container mx-auto">{navList}</div>
         </MobileNav>
       )}
     </MTNavbar>
   );
 }
-
-// Navbar.defaultProps = {
-//   brandName: "Canary Trap",
-//   action: (
-//     <a
-//       href="https://www.creative-tim.com/product/material-tailwind-kit-react"
-//       target="_blank"
-//     >
-//       <Button variant="gradient" size="sm" fullWidth>
-//         free download
-//       </Button>
-//     </a>
-//   ),
-// };
-
-// Navbar.propTypes = {
-//   brandName: PropTypes.string,
-//   action: PropTypes.node,
-// };
-
-// Navbar.displayName = "/src/widgets/layout/navbar.jsx";
 
 export default Navbar;
