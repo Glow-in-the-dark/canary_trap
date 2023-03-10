@@ -19,6 +19,7 @@ Main:
 7. nodemailer - for automated email + attaching IMGs to email.
 
 Other smaller packages: 
+
 8. Axios - for fetching 
 9. Tailwind - for styling. 
 10. React router - routing to different pages, for the NavBar. 
