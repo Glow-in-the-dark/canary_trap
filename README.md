@@ -22,7 +22,7 @@ Other smaller packages: 8. Axios - for fetching 9. Tailwind - for styling. 10. R
 
 ## Hierarchy
 
-<kbd>![Hierarchy screenshot](/public/img/wireframe.png)</kbd>
+![Hierarchy screenshot](/public/img/wireframe.png)
 
 ## User Flow / Stories
 
