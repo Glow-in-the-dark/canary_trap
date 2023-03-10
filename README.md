@@ -18,7 +18,17 @@ Main:
 6. JIMP - for pixel manipulation
 7. nodemailer - for automated email + attaching IMGs to email.
 
-Other smaller packages: 8. Axios - for fetching 9. Tailwind - for styling. 10. React router - routing to different pages, for the NavBar. 11. jsonwebtoken - to enable JWT token 12. jwt-decode - for decoding JWT tokens 13. UUID - for unique ID 14. bcrypt - encryption for password 15. dotenv - for private enviroment variables 16. heroicons - for icons 17. buffer - for use images buffer
+Other smaller packages: 
+8. Axios - for fetching 
+9. Tailwind - for styling. 
+10. React router - routing to different pages, for the NavBar. 
+11. jsonwebtoken - to enable JWT token 
+12. jwt-decode - for decoding JWT tokens 
+13. UUID - for unique ID 
+14. bcrypt - encryption for password
+15. dotenv - for private enviroment variables 
+16. heroicons - for icons 
+17. buffer - for use images buffer
 
 ## Hierarchy
 
